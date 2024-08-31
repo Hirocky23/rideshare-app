@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Django",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/manage.py",
+      "args": [
+        "runserver"
+      ],
+      "django": true,
+      "justMyCode": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python デバッガー: 現在のファイル",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "internalConsole"
+    }
+  ]
+}
