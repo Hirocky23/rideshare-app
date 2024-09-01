@@ -1,0 +1,21 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}ホーム - ライドシェアアプリ{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">ライドシェアへようこそ</h1>
+<p class="lead">安全で便利な移動手段を提供します。</p>
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h2>ライドを探す</h2>
+        <p>目的地を入力して、利用可能なライドを検索します。</p>
+        <a href="#" class="btn btn-primary">ライドを探す</a>
+    </div>
+    <div class="col-md-6">
+        <h2>ドライバーになる</h2>
+        <p>あなたの車で他の人を助けながら、収入を得ることができます。</p>
+        <a href="#" class="btn btn-secondary">ドライバー登録</a>
+    </div>
+</div>
+{% endblock %}
