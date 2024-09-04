@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import Ride
+from django.http import HttpResponse
 
 def home(request):
-    return render(request, 'rides/home.html')
+    return HttpResponse("Welcome to the Rideshare App!")
 
 def ride_list(request):
     rides = Ride.objects.all()
