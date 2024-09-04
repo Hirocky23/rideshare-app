@@ -4,10 +4,8 @@ from pathlib import Path
 # プロジェクトのベースディレクトリを設定
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# シークレットキーの設定（本番環境では環境変数から取得するべきです）
 SECRET_KEY = 'your-secret-key-here'
 
-# デバッグモードの設定（本番環境ではFalseにします）
 DEBUG = True
 
 ALLOWED_HOSTS = []
