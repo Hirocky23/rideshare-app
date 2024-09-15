@@ -4,11 +4,13 @@ from pathlib import Path
 # プロジェクトのベースディレクトリを設定
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'your-secret-key-here'
+# 開発環境用のシークレットキー（本番環境では環境変数を使用すること）
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dev-secret-key-replace-in-production')
 
+# デバッグモードを有効化
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # アプリケーションの定義
 INSTALLED_APPS = [
@@ -18,7 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rides',  # あなたのアプリケーション
+    'rides',
+    'debug_toolbar',  # 開発用デバッグツールバー
 ]
 
 # ミドルウェアの設定
@@ -30,6 +33,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # 開発用デバッグツールバー
 ]
 
 ROOT_URLCONF = 'rideshare_projects.urls'
@@ -85,9 +89,45 @@ USE_TZ = True
 
 # 静的ファイルの設定
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# メディアファイルの設定
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # デフォルトの主キーフィールドの型
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 開発用のメール設定
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# 開発用のキャッシュ設定
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+# ロギング設定
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
+
+# Debug Toolbar設定
+INTERNAL_IPS = ['127.0.0.1']
+
+# 開発環境特有の設定
+if DEBUG:
+    # ここに開発環境のみで使用する追加の設定を記述
+    pass
