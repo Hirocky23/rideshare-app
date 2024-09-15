@@ -6,7 +6,3 @@ urlpatterns = [
     path('', views.home, name='home'),
 ]
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('rides.urls')),
-]
